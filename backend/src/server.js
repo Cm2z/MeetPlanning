@@ -21,11 +21,19 @@ dotenv.config();
 
 const app = express();
 const port = Number(process.env.PORT || 4000);
-app.use(cors({ 
-    origin: process.env.CLIENT_ORIGIN || 'http://localhost:5173',
-    credentials: true 
+app.use(cors({
+    origin: true, // ปรับเป็น true เพื่อให้ดึง origin หน้าบ้านโดยอัตโนมัติ ไม่ว่าจะเปลี่ยนโดเมนไปเป็นอะไร
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept']
 }));
-app.use(helmet());
+
+// ปรับค่า helmet ให้ยอมรับการเชื่อมต่อข้ามโดเมนบนเซิร์ฟเวอร์
+app.use(helmet({
+    crossOriginResourcePolicy: { policy: "cross-origin" },
+    crossOriginOpenerPolicy: { policy: "unsafe-none" }
+}));
+
 app.use(express.json({ limit: '10mb' }));
 app.use(morgan('dev'));
 app.get('/health', (_req, res) => res.json({ ok: true, service: 'MeetPlanning API' }));
