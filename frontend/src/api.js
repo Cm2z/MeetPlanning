@@ -1,4 +1,4 @@
-﻿const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
+﻿const API_URL = 'https://meetplanning-production.up.railway.app/api';
 
 export function getSession() {
   const raw = localStorage.getItem('meetplanning_session');

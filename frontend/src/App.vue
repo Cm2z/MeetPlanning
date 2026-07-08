@@ -3,7 +3,7 @@ import { computed, onMounted, reactive, ref } from 'vue';
 import { Bell, CalendarDays, Database, DoorOpen, FileText, LogIn, LogOut, Mail, Repeat, Search, Settings, ShieldCheck, UserPlus, Users } from '@lucide/vue';
 import { api, clearSession, getSession, saveSession } from './api.js';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
+const API_URL = 'https://meetplanning-production.up.railway.app/api';
 const session = ref(getSession());
 const view = ref('dashboard');
 const authMode = ref('login');
