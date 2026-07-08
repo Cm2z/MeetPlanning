@@ -5,5 +5,9 @@ export default defineConfig({
   plugins: [vue()],
   server: {
     port: 5173
+  },
+  // เพิ่มส่วนนี้ 👇
+  preview: {
+    allowedHosts: true
   }
 });
